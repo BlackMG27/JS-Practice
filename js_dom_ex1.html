@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Date and Time</title>
+	<link href="https://fonts.googleapis.com/css?family=Muli:300,700" rel="stylesheet">
+	<meta charset="UTF-8">
+	<style>
+		body {
+			font-family: "Muli", Helvetica, sans-serif;
+			background-color: #821026;
+		}
+
+		#container {
+			width: 68%;
+			margin: 0 auto;
+			margin-top: ;
+			padding-top: 10%;
+			text-align: center;
+			color: #FAF8F8;
+		}
+
+		h1 {
+			font-weight: 300;
+			font-size: 4.5em;
+			margin-bottom: 15px;
+		}
+
+		h2 {
+			font-size: 2.5em;
+			font-weight: 300;
+			margin-top: 15px;
+			margin-bottom: 12px;
+		}
+
+		h3 {
+			font-size: 1.7em;
+			font-weight: 300;
+			margin-top: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<h1>Hello!</h1>
+		<h2>Today is <span id="day"></span> <span id="month"></span> <span id="date"></span>, <span id="year"></h2>
+		<h3>And it is <span id="hour"></span>:<span id="minutes"></span>:<span id="seconds"></span> <span id="ampm"></span></h3>
+	</div>
+</body>
+<script>
+	
+	function displayDate(){
+		var now =  new Date();
+
+		var weekday = new Array(7);
+			weekday[0] = "Sunday";
+			weekday[1] = "Monday";
+			weekday[2] = "Tuesday";
+			weekday[3] = "Wednesday";
+			weekday[4] = "Thursday";
+			weekday[5] = "Friday";
+			weekday[6] = "Saturday";
+
+			var day = weekday[now.getDay()];
+			document.getElementById("day").innerHTML = day;
+
+		var month = new Array(12);
+			month[0] = "January";
+			month[1] = "Frebruary";
+			month[2] = "March";
+			month[3] = "April";
+			month[4] = "May";
+			month[5] = "June";
+			month[6] = "July";
+			month[7] = "August";	
+			month[8] = "September";
+			month[9] = "October";
+			month[10] = "November";
+			month[11] = "December";
+
+		var yearMonth = month[now.getMonth()];
+		document.getElementById("month").innerHTML = yearMonth;	
+
+		var date = now.getDate();
+		document.getElementById("date").innerHTML = date;
+
+		var year = now.getFullYear();
+		document.getElementById("year").innerHTML = year;
+
+		var hours = now.getHours();
+		var hoursNow = hours %12 || 12;//had to create new variable so the ampm would work
+		document.getElementById("hour").innerHTML = hoursNow;
+
+		var ampm = hours >= 12 ? 'pm' : 'am';
+		document.getElementById("ampm").innerHTML = ampm;
+
+		var minutes = now.getMinutes();
+		minutes = minutes < 10 ? '0'+ minutes : minutes;//formats the minutes so that if minutes < 10, it show as 01,02 etc
+		document.getElementById("minutes").innerHTML = minutes;
+
+		var seconds = now.getSeconds();
+		seconds = seconds < 10 ? '0' + seconds : seconds;//formats the seconds so that if seconds < 10, it show as 01,02 etc
+		document.getElementById("seconds").innerHTML = seconds;
+	}
+
+	setInterval(displayDate, 1000);
+</script>
+</html>
